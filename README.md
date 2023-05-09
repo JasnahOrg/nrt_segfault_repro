@@ -1,6 +1,18 @@
-### Steps to Reproduce
+### Setup
 - Create a trn1.2xlarge instance with with `Deep Learning AMI Neuron PyTorch 1.13 (Ubuntu 20.04) 20230505`.
 - Install Rust: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+- Make rust available in the current shell: `source "$HOME/.cargo/env"`
+- Install clang
+    - `sudo apt-get update`
+    - `sudo apt-get install -y libclang-dev`
+- Make NRT findable at compile time:
+```
+export CPATH=/opt/aws/neuron/include:$CPATH
+export LIBRARY_PATH=/opt/aws/neuron/lib:$LIBRARY_PATH
+export LD_LIBRARY_PATH=/opt/aws/neuron/lib:$LD_LIBRARY_PATH
+```
+
+### Reproduce Segfault
 - Run the test: `cargo test transformer_xla_benchmark -- --show-output --nocapture`
 - Expected output:
 ```
@@ -37,3 +49,4 @@ successes:
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out; finished in 9.49s
 ```
+- The primary function of interest `run_trn` in xla_runner.rs, which calls helper functions in trn.rs.
