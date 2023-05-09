@@ -1,5 +1,5 @@
 ### Setup
-- Create a trn1.2xlarge instance with with `Deep Learning AMI Neuron PyTorch 1.13 (Ubuntu 20.04) 20230505`.
+- Create a trn1.2xlarge instance with `Deep Learning AMI Neuron PyTorch 1.13 (Ubuntu 20.04) 20230505`.
 - Install Rust: `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 - Make rust available in the current shell: `source "$HOME/.cargo/env"`
 - Install clang
