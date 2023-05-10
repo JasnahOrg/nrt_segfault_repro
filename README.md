@@ -29,8 +29,8 @@ Caused by:
 
 ### Overview
 - This contains two .neffs:
-    - transformer_xla_working.neff, this is a Transformer with (n_context 6, n_layers 1, d_model 4096, n_heads 8)
-    - transformer_xla_segfault.neff, this is a Transformer with (n_context 2048, n_layers 1, d_model 5120, n_heads 80)
+    - xla/transformer_xla_working.neff, this is a Transformer with (n_context 6, n_layers 1, d_model 4096, n_heads 8)
+    - xla/transformer_xla_segfault.neff, this is a Transformer with (n_context 2048, n_layers 1, d_model 5120, n_heads 80)
     - The neffs have no parameter inputs. The input to the Transformer is generated from a uniform distribution as part of the XLA graph.
 - The test being run can be found at the bottom of xla/src/trn.rs. Switch the path on the `run_trn()` call to run the working .neff rather than the segfault neff. Expected output from the working .neff:
 ```
@@ -49,4 +49,4 @@ successes:
 
 test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 8 filtered out; finished in 9.49s
 ```
-- The primary function of interest `run_trn` in xla_runner.rs, which calls helper functions in trn.rs.
+- The primary function of interest is `run_trn` in xla/src/xla_runner.rs, which calls helper functions in xla/src/trn.rs.
